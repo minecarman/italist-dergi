@@ -1,0 +1,19 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import ArticleCard from '../components/ArticleCard.astro';
+const posts = (await getCollection('blog')).sort((a,b) => b.data.pubDate.valueOf()-a.data.pubDate.valueOf());
+const issues = (await getCollection('issues')).sort((a,b) => b.data.issueNumber-a.data.issueNumber);
+const latest = issues[0];
+---
+<Layout>
+  <section class="editorial-hero bg-paper">
+    <img src="/background.png" alt="İtalist dergisi için Roma mimarisi illüstrasyonu" class="block h-auto w-full mix-blend-multiply" />
+    <div class="mx-auto flex max-w-5xl flex-col items-center px-5 py-14 text-center lg:px-8 lg:py-20">
+      <h1 class="serif max-w-4xl text-5xl leading-[1.05] text-[#8c4a27] md:text-7xl">İtalya'dan ilhamla sanat, düşünce ve yaşam.</h1>
+      <p class="mt-6 max-w-xl text-lg leading-8 text-[#6e5546]">İtalist, Ankara Üniversitesi DTCF fakültesinden İtalya'yı düşünen, yazan ve paylaşan bağımsız bir kültür dergisidir.</p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3"><a href={`/sayilar/${latest.id}`} class="rounded-full bg-[#8c4a27] px-6 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-75">Sayıyı oku →</a><a href="/yazilar" class="rounded-full border border-[#8c4a27]/40 px-6 py-3 text-sm font-semibold text-[#8c4a27] transition-opacity hover:opacity-70">Yazıları keşfet</a></div>
+    </div>
+  </section>
+  <section class="border-y border-stone-200 bg-white/50"><div class="mx-auto max-w-7xl px-5 py-16 lg:px-8"><div class="mb-8 flex items-end justify-between"><div><p class="text-xs font-bold uppercase tracking-[.2em] text-terracotta">Seçkimiz</p><h2 class="serif mt-2 text-4xl">Öne çıkan yazılar</h2></div><a href="/yazilar" class="hidden text-sm font-semibold text-terracotta md:block">Tüm yazılar →</a></div><div class="grid gap-8 md:grid-cols-3">{posts.filter(p=>p.data.featured).slice(0,3).map(post=><ArticleCard post={post}/>)}</div></div></section>
+</Layout>

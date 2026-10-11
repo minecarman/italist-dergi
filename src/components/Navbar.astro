@@ -1,0 +1,23 @@
+---
+import { Menu } from 'lucide-astro';
+---
+<header class="relative z-40 bg-paper">
+  <nav class="relative mx-auto flex max-w-7xl items-center justify-center px-5 py-4 lg:px-8">
+    <a href="/" aria-label="İtalist ana sayfa" class="absolute left-5 top-1/2 -translate-y-1/2 lg:left-8">
+      <img src="/logo.png" alt="İtalist dergi" class="h-9 w-auto object-contain md:h-11" />
+    </a>
+    <div class="hidden items-center gap-10 md:flex">
+      <a href="/hakkimizda" class="editorial-nav-link">Hakkımızda</a>
+      <a href="/yazilar" class="editorial-nav-link">Blog</a>
+      <a href="/sayilar" class="editorial-nav-link">Dergi</a>
+      <a href="/yazi-gonder" class="editorial-nav-link">Bize Ulaşın</a>
+    </div>
+    <button id="menu-button" class="absolute right-5 top-1/2 -translate-y-1/2 text-[#8c4a27] md:hidden" aria-label="Menüyü aç"><Menu size={22} /></button>
+  </nav>
+  <div id="mobile-menu" class="hidden border-t border-[#8c4a27]/15 bg-paper px-5 py-5 md:hidden">
+    <div class="flex flex-col gap-4 font-display text-lg text-[#8c4a27]">
+      <a href="/hakkimizda">Hakkımızda</a><a href="/yazilar">Blog</a><a href="/sayilar">Dergi</a><a href="/yazi-gonder">Bize Ulaşın</a>
+    </div>
+  </div>
+</header>
+<script>document.getElementById('menu-button')?.addEventListener('click', () => document.getElementById('mobile-menu')?.classList.toggle('hidden'));</script>

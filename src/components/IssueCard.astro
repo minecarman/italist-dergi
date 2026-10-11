@@ -1,0 +1,4 @@
+---
+const { issue } = Astro.props;
+---
+<article class="group"><a href={`/sayilar/${issue.id}`}><div class="relative aspect-[3/4] overflow-hidden rounded-sm bg-stone-300 shadow-cover"><img src={issue.data.coverImage} alt={issue.data.title} class="h-full w-full object-cover transition duration-500 group-hover:scale-105" /><div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div><span class="absolute bottom-4 left-4 font-display text-2xl text-white">#{issue.data.issueNumber}</span></div><h3 class="serif mt-4 text-xl group-hover:text-terracotta">{issue.data.title}</h3><p class="mt-1 text-sm text-stone-500">{issue.data.date.toLocaleDateString('tr-TR', { month: 'long', year: 'numeric' })} · {issue.data.pageCount} sayfa</p></a></article>

@@ -1,0 +1,5 @@
+---
+import { getCollection } from 'astro:content'; import Layout from '../../layouts/Layout.astro'; import ArticleCard from '../../components/ArticleCard.astro';
+const posts=(await getCollection('blog')).sort((a,b)=>b.data.pubDate.valueOf()-a.data.pubDate.valueOf());
+---
+<Layout title="Yazılar — İtalist"><section class="mx-auto max-w-7xl px-5 py-16 lg:px-8"><p class="text-xs font-bold uppercase tracking-[.25em] text-terracotta">İtalist yazıları</p><h1 class="serif mt-3 text-5xl">Düşünceler, izler, hikâyeler.</h1><div class="mt-10 flex flex-wrap gap-2 border-b border-stone-200 pb-5 text-sm"><a href="/yazilar" class="rounded-full bg-ink px-4 py-2 text-white">Hepsi</a><a href="?category=edebiyat" class="rounded-full px-4 py-2 hover:bg-stone-100">Edebiyat</a><a href="?category=tarih" class="rounded-full px-4 py-2 hover:bg-stone-100">Tarih</a><a href="?category=dil" class="rounded-full px-4 py-2 hover:bg-stone-100">Dil</a><a href="?category=kultur" class="rounded-full px-4 py-2 hover:bg-stone-100">Kültür</a></div><div class="mt-10 grid gap-x-8 gap-y-12 md:grid-cols-3">{posts.map(post=><ArticleCard post={post}/>)}</div></section></Layout>

@@ -1,0 +1,5 @@
+---
+import { getCollection } from 'astro:content'; import Layout from '../../layouts/Layout.astro'; import IssueCard from '../../components/IssueCard.astro';
+const issues=(await getCollection('issues')).sort((a,b)=>b.data.issueNumber-a.data.issueNumber);
+---
+<Layout title="Sayılar — İtalist"><section class="mx-auto max-w-7xl px-5 py-16 lg:px-8"><p class="text-xs font-bold uppercase tracking-[.25em] text-terracotta">Arşiv</p><h1 class="serif mt-3 text-5xl">Dergi sayıları</h1><p class="mt-4 max-w-xl text-lg text-stone-600">Her sayıda İtalya'ya başka bir pencereden bakıyoruz. Basılı hissi veren dijital arşivimizi keşfedin.</p><div class="mt-12 grid max-w-4xl gap-12 sm:grid-cols-2">{issues.map(issue=><IssueCard issue={issue}/>)}</div></section></Layout>
